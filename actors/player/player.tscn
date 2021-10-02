@@ -16,3 +16,5 @@ texture = ExtResource( 1 )
 hframes = 5
 vframes = 6
 frame = 20
+
+[node name="InvulnTimer" type="Timer" parent="."]

@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Object",
+"class": "MarketType",
+"language": "GDScript",
+"path": "res://classes/MarketType.gd"
+}, {
+"base": "Object",
 "class": "RandomChoice",
 "language": "GDScript",
 "path": "res://utility/random_choice.gd"
 } ]
 _global_script_class_icons={
+"MarketType": "",
 "RandomChoice": ""
 }
 
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="Moonbound"
 run/main_scene="res://scenes/Gameplay.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Market="*res://autoload/Market.gd"
 
 [importer_defaults]
 
