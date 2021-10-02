@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://tiles/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://enemy/enemy.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,3 +24,6 @@ zoom = Vector2( 0.25, 0.25 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 2 )
+
+[node name="enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 177.057, -65.1471 )

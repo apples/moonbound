@@ -13,6 +13,6 @@ polygon = PoolVector2Array( -1.96714, -8.15491, 1.97453, -8.09737, 5.03159, -6.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-vframes = 6
 hframes = 5
+vframes = 6
 frame = 20
