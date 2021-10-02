@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/TileMapPlus/TileMapPlus.gd" type="Script" id=1]
+[ext_resource path="res://scenes/rooms/RoomBase.gd" type="Script" id=2]
+[ext_resource path="res://tiles/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/rooms/DebugGuides.gd" type="Script" id=4]
+
+[node name="RoomBase" type="Node2D"]
+position = Vector2( 0.471924, 0 )
+script = ExtResource( 2 )
+
+[node name="TileMapFloor" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+show_collision = true
+format = 1
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="TileMapObstacles" type="TileMap" parent="YSort"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+cell_y_sort = true
+format = 1
+script = ExtResource( 1 )
+
+[node name="TileMapRoof" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+format = 1
+
+[node name="DebugGuides" type="Node2D" parent="."]
+script = ExtResource( 4 )
+show_guides = true

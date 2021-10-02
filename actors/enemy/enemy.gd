@@ -10,7 +10,7 @@ var crypto_tribe = 0
 #pick 6 from the following
 var base_regen_rate = 1
 var base_armor = 3
-var base_move_speed = 50.0
+export var base_move_speed = 50.0
 var base_attack_power = 5
 var base_attack_speed = 2
 var base_ranged_attack_power = 3
