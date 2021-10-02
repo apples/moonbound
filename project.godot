@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Object",
+"class": "RandomChoice",
+"language": "GDScript",
+"path": "res://utility/random_choice.gd"
+} ]
+_global_script_class_icons={
+"RandomChoice": ""
+}
+
 [application]
 
 config/name="Moonbound"
