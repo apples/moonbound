@@ -25,7 +25,6 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 2 )
 
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -36,5 +35,4 @@ __meta__ = {
 }
 
 [node name="enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 177.057, -65.1471 )
-
+position = Vector2( 240, -40 )
