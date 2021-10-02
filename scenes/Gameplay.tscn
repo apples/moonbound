@@ -23,3 +23,12 @@ zoom = Vector2( 0.25, 0.25 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_right = 1024.0
+margin_bottom = 598.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
