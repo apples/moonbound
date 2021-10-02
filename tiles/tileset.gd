@@ -1,16 +1,6 @@
 tool
 extends TileSet
 
-var binds = {
-	TileType.CLIFF: [TileType.CLIFF_LADDER],
-	TileType.CLIFF_LADDER: [TileType.CLIFF],
-}
-
-func _is_tile_bound(a, b):
-	if a in binds:
-		return b in binds[a]
-	return false
-
 func get_random_atlas_coord(id: int, rng: RandomNumberGenerator = null):
 	# Need an RNG
 	if rng == null:
@@ -27,14 +17,14 @@ func get_random_atlas_coord(id: int, rng: RandomNumberGenerator = null):
 	var atlas_size = rect.size / tile_size
 	
 	# Create random choice
-	var chooser = RandomChoice.new()
-	
-	for r in range(atlas_size.y):
-		for c in range(atlas_size.x):
-			var coord = Vector2(c, r)
-			chooser.add(coord, autotile_get_subtile_priority(id, coord))
-	
-	if chooser.total_priority == 0:
-		return Vector2(0, 0)
-	
-	return chooser.choose(rng)
+#	var chooser = RandomChoice.new()
+#
+#	for r in range(atlas_size.y):
+#		for c in range(atlas_size.x):
+#			var coord = Vector2(c, r)
+#			chooser.add(coord, autotile_get_subtile_priority(id, coord))
+#
+#	if chooser.total_priority == 0:
+#		return Vector2(0, 0)
+#
+#	return chooser.choose(rng)

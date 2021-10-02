@@ -4,7 +4,7 @@ var invuln = false
 var dead = false
 var sleeping = false
 
-const base_move_speed = 50.0
+const base_move_speed = 100.0
 
 
 # Called when the node enters the scene tree for the first time.
