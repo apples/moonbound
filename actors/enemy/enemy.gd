@@ -20,13 +20,13 @@ var base_crit_chance = 5
 var base_dodge_chance = 5
 var base_attack_range = 20
 
-
+var player = null
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	player = get_tree().get_nodes_in_group("player")[0]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,8 +37,27 @@ func _process(delta):
 		pass
 
 func _process_alive(delta):
-	var dir = Vector2(0, 0)
-	var player = get_tree().get_nodes_in_group("player")[0]
-	var vec = player.position - position
-	dir = vec.normalized()
-	move_and_slide(dir * base_move_speed)
+	if not dead:
+		var dir = Vector2(0, 0)
+		var vec = player.position - position
+		dir = vec.normalized()
+		move_and_slide(dir * base_move_speed)
+		
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if(collision.collider.name == "Player"):
+				player.get_hit()
+
+func get_hit(hitDir = Vector2(0, 0)):
+	if not dead:
+		if current_health > 0:
+			current_health -= 1
+		if current_health <= 0:
+			dead = true
+			$DeadTimer.start()
+			$CollisionPolygon2D.set_deferred("disabled", true)
+			#$AnimatedSprite.rotation_degrees = 90
+			#$AnimatedSprite.stop()
+
+func _on_DeadTimer_timeout():
+	queue_free()

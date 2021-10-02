@@ -8,9 +8,13 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-vframes = 8
 hframes = 13
+vframes = 8
 frame = 52
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -16, -24, -16, 24, 16, 24, 16, -24 )
+
+[node name="DeadTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DeadTimer" to="." method="_on_DeadTimer_timeout"]
