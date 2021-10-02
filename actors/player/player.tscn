@@ -9,12 +9,12 @@
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -1.96714, -8.15491, 1.97453, -8.09737, 5.03159, -6.04785, 5.08872, 6.29266, 3.38715, 8.00142, -3.45079, 8.00142, -5.0273, 6.29276, -5.14117, -6.11854 )
+polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 5, 6, 3, 8, -3, 8, -5, 6, -5, -6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 5
 vframes = 6
+hframes = 5
 frame = 20
 
 [node name="InvulnTimer" type="Timer" parent="."]
