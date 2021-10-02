@@ -1,16 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-<<<<<<< HEAD:player/player.tscn
-[ext_resource path="res://player/ridingHood.png" type="Texture" id=1]
-[ext_resource path="res://player/player.gd" type="Script" id=2]
-[ext_resource path="res://player/axeframes.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://actors/player/ridingHood.png" type="Texture" id=1]
+[ext_resource path="res://actors/player/player.gd" type="Script" id=2]
+[ext_resource path="res://actors/player/axeframes.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
-=======
-[ext_resource path="res://actors/player/ridingHood.png" type="Texture" id=1]
-[ext_resource path="res://actors/player/player.gd" type="Script" id=2]
->>>>>>> 611b2c21a11a745ee3bd75738b17b13cb3972dff:actors/player/player.tscn
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
