@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui_controls/plot/Plot.gd" type="Script" id=1]
+
+[node name="Plot" type="GridContainer"]
+margin_right = 256.0
+margin_bottom = 100.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+color = Color( 0.313726, 0, 1, 0.501961 )
+
+[node name="Labels" type="VSplitContainer" parent="."]
+margin_left = 256.0
+margin_right = 280.0
+margin_bottom = 64.0
+custom_constants/separation = 0
+dragger_visibility = 2
+
+[node name="MaxValueLabel" type="Label" parent="Labels"]
+margin_right = 24.0
+margin_bottom = 14.0
+text = "200"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentValueLabel" type="Label" parent="Labels"]
+margin_top = 32.0
+margin_right = 24.0
+margin_bottom = 46.0
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 8, 56, 48, 16, 88, 48, 128, 24, 192, 48, 232, 8 )
+width = 6.0
+default_color = Color( 1, 0.4, 0.4, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 3

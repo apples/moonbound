@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/player/ridingHood.png" type="Texture" id=1]
 [ext_resource path="res://actors/player/player.gd" type="Script" id=2]
@@ -8,10 +8,18 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
 script = ExtResource( 2 )
+
+[node name="BodyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
+shape = SubResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 5, 6, 3, 8, -3, 8, -5, 6, -5, -6 )
@@ -29,12 +37,14 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Axe"]
 position = Vector2( 0, 16 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AxeSprite" type="AnimatedSprite" parent="Axe"]
 position = Vector2( 0, 8 )
 frames = ExtResource( 3 )
 
+[connection signal="area_entered" from="BodyArea" to="." method="_on_BodyArea_area_entered"]
+[connection signal="area_exited" from="BodyArea" to="." method="_on_BodyArea_area_exited"]
 [connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]
 [connection signal="body_entered" from="Axe" to="Axe" method="_on_Axe_body_entered"]
 [connection signal="animation_finished" from="Axe/AxeSprite" to="Axe" method="_on_AxeSprite_animation_finished"]

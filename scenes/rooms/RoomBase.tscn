@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/TileMapPlus/TileMapPlus.gd" type="Script" id=1]
 [ext_resource path="res://scenes/rooms/RoomBase.gd" type="Script" id=2]
 [ext_resource path="res://tiles/tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://scenes/rooms/DebugGuides.gd" type="Script" id=4]
 
-[node name="RoomBase" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 120, 80 )
+
+[node name="RoomBase" type="Node2D" groups=[
+"room",
+]]
 position = Vector2( 0.471924, 0 )
 script = ExtResource( 2 )
 
@@ -33,3 +38,11 @@ format = 1
 [node name="DebugGuides" type="Node2D" parent="."]
 script = ExtResource( 4 )
 show_guides = true
+
+[node name="RoomArea" type="Area2D" parent="." groups=[
+"room_area",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomArea"]
+position = Vector2( 120, 80 )
+shape = SubResource( 1 )

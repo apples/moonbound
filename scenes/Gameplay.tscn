@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://scenes/RoomManager.gd" type="Script" id=3]
 [ext_resource path="res://actors/enemy/enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/rooms/Room1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui_controls/plot/Plot.tscn" type="PackedScene" id=6]
 
 [node name="Gameplay" type="Node2D"]
 
@@ -14,13 +15,23 @@ script = ExtResource( 3 )
 [node name="Room1" parent="RoomManager" instance=ExtResource( 5 )]
 position = Vector2( 0, 0 )
 
+[node name="Room2" parent="RoomManager" instance=ExtResource( 5 )]
+position = Vector2( -240, 0 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -16 )
+camera_path = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.25, 0.25 )
+limit_left = -120
+limit_top = -80
+limit_right = 120
+limit_bottom = 80
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+editor_draw_limits = true
 script = ExtResource( 2 )
 
 [node name="enemy" parent="." instance=ExtResource( 4 )]
@@ -30,9 +41,23 @@ base_move_speed = 0.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
-visible = false
 margin_right = 1024.0
 margin_bottom = 598.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StrengthPlot" parent="CanvasLayer" instance=ExtResource( 6 )]
+background_color = Color( 0.00784314, 0, 1, 0.501961 )
+
+[node name="SpeedPlot" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_top = 64.0
+margin_bottom = -512.0
+market_type = 1
+background_color = Color( 0, 1, 0.415686, 0.501961 )
+
+[node name="HealthPlot" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_top = 128.0
+margin_bottom = -448.0
+market_type = 2
+background_color = Color( 0.827451, 0, 1, 0.501961 )

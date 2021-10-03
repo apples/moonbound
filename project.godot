@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "DampedValue",
+"language": "GDScript",
+"path": "res://classes/DampedValue.gd"
+}, {
+"base": "Reference",
+"class": "GeomBrownMotion",
+"language": "GDScript",
+"path": "res://classes/GeomBrownMotion.gd"
+}, {
+"base": "Reference",
+"class": "LerpedValue",
+"language": "GDScript",
+"path": "res://classes/LerpedValue.gd"
+}, {
 "base": "Object",
 "class": "MarketType",
 "language": "GDScript",
@@ -20,6 +35,9 @@ _global_script_classes=[ {
 "path": "res://utility/random_choice.gd"
 } ]
 _global_script_class_icons={
+"DampedValue": "",
+"GeomBrownMotion": "",
+"LerpedValue": "",
 "MarketType": "",
 "RandomChoice": ""
 }
@@ -33,6 +51,13 @@ config/icon="res://icon.png"
 [autoload]
 
 Market="*res://autoload/Market.gd"
+
+[display]
+
+window/size/width=960
+window/size/height=640
+window/size/resizable=false
+window/energy_saving/keep_screen_on=false
 
 [editor_plugins]
 
