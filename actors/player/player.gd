@@ -23,9 +23,14 @@ const base_move_speed = 100.0
 enum { DIR_N, DIR_S, DIR_E, DIR_W }
 var facing = DIR_S
 
+onready var anim_tree = $AnimationTree
+onready var anim_tree_playback = anim_tree["parameters/playback"]
+onready var anim_tree_normal_playback = anim_tree["parameters/normal/state_machine/playback"]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	anim_tree_playback.start("normal")
+	anim_tree_normal_playback.start("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,15 +64,18 @@ func _process_alive(delta):
 	if dir.y > 0:
 		facing = DIR_S
 		
-#	match facing:
-#		DIR_S:
-#			anim_tree_normal_playback.travel("walk_S")
-#		DIR_N:
-#			anim_tree_normal_playback.travel("walk_N")
-#		DIR_E:
-#			anim_tree_normal_playback.travel("walk_E")
-#		DIR_W:
-#			anim_tree_normal_playback.travel("walk_W")
+	match facing:
+		DIR_S:
+			anim_tree_normal_playback.travel("walk_S")
+		DIR_N:
+			anim_tree_normal_playback.travel("walk_N")
+		DIR_E:
+			anim_tree_normal_playback.travel("walk_E")
+		DIR_W:
+			anim_tree_normal_playback.travel("walk_W")
+	
+	if dir.length_squared() == 0:
+		anim_tree_normal_playback.travel("default")
 	
 	if Input.is_action_just_pressed("attack") and not $Axe.swinging and $Axe.cooldown <= 0:
 		match facing:

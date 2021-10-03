@@ -1,12 +1,157 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://actors/player/ridingHood.png" type="Texture" id=1]
+[ext_resource path="res://actors/player/miner.png" type="Texture" id=1]
 [ext_resource path="res://actors/player/player.gd" type="Script" id=2]
 [ext_resource path="res://actors/player/axeframes.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://actors/player/Axe.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk_E"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "walk_N"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 3 ), Vector2( 1, 3 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "walk_S"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 4 ), Vector2( 1, 4 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "walk_W"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 2 ), Vector2( 1, 2 ) ]
+}
+
+[sub_resource type="AnimationNodeTimeScale" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "default"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "walk_E"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "walk_N"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "walk_S"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "walk_W"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/default/node = SubResource( 13 )
+states/default/position = Vector2( 596, 109 )
+states/walk_E/node = SubResource( 14 )
+states/walk_E/position = Vector2( 758, 109 )
+states/walk_N/node = SubResource( 15 )
+states/walk_N/position = Vector2( 596, 42 )
+states/walk_S/node = SubResource( 16 )
+states/walk_S/position = Vector2( 596, 184 )
+states/walk_W/node = SubResource( 17 )
+states/walk_W/position = Vector2( 421, 109 )
+transitions = [ "default", "walk_E", SubResource( 18 ), "walk_E", "default", SubResource( 19 ), "default", "walk_S", SubResource( 20 ), "walk_S", "default", SubResource( 21 ), "walk_N", "default", SubResource( 22 ), "default", "walk_N", SubResource( 23 ), "default", "walk_W", SubResource( 24 ), "walk_W", "default", SubResource( 25 ) ]
+
+[sub_resource type="AnimationNodeBlendTree" id=6]
+nodes/output/position = Vector2( 700, 120 )
+nodes/playback_speed/node = SubResource( 5 )
+nodes/playback_speed/position = Vector2( 460, 100 )
+nodes/state_machine/node = SubResource( 4 )
+nodes/state_machine/position = Vector2( 240, 100 )
+node_connections = [ "output", 0, "playback_speed", "playback_speed", 0, "state_machine" ]
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/normal/node = SubResource( 6 )
+states/normal/position = Vector2( 545, 170 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -18,9 +163,9 @@ polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 5, 6, 3, 8, -3, 8, -5, 6, -5, 
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 5
-vframes = 6
-frame = 20
+hframes = 2
+vframes = 5
+frame = 3
 
 [node name="InvulnTimer" type="Timer" parent="."]
 
@@ -34,6 +179,21 @@ shape = SubResource( 1 )
 [node name="AxeSprite" type="AnimatedSprite" parent="Axe"]
 position = Vector2( 0, 8 )
 frames = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 8 )
+anims/walk_E = SubResource( 9 )
+anims/walk_N = SubResource( 10 )
+anims/walk_S = SubResource( 11 )
+anims/walk_W = SubResource( 12 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 2 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 3 )
+parameters/normal/playback_speed/scale = 1.0
+parameters/normal/state_machine/playback = SubResource( 7 )
 
 [connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]
 [connection signal="body_entered" from="Axe" to="Axe" method="_on_Axe_body_entered"]
