@@ -9,17 +9,17 @@ var base_max_health = 10
 var current_health = 10
 
 #pick 6 from the following
-var base_regen_rate = 1
-var base_armor = 3
+var regen_rate = 1
+var armor = 3
 #var base_move_speed = 50
-var base_attack_power = 5
-var base_attack_speed = 2
-var base_ranged_attack_power = 3
-var base_ranged_attack_speed = 3
-var base_stamina = 20
-var base_crit_chance = 5
-var base_dodge_chance = 5
-var base_attack_range = 20
+var attack_power = 5
+var attack_speed = 2
+var ranged_attack_power = 3
+var ranged_attack_speed = 3
+var stamina = 20
+var crit_chance = 5
+var dodge_chance = 5
+var attack_range = 20
 
 const base_move_speed = 100.0
 
@@ -28,9 +28,14 @@ var facing = DIR_S
 
 var room_areas = []
 
+onready var anim_tree = $AnimationTree
+onready var anim_tree_playback = anim_tree["parameters/playback"]
+onready var anim_tree_normal_playback = anim_tree["parameters/normal/state_machine/playback"]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	anim_tree_playback.start("normal")
+	anim_tree_normal_playback.start("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,34 +69,39 @@ func _process_alive(delta):
 	if dir.y > 0:
 		facing = DIR_S
 		
-#	match facing:
-#		DIR_S:
-#			anim_tree_normal_playback.travel("walk_S")
-#		DIR_N:
-#			anim_tree_normal_playback.travel("walk_N")
-#		DIR_E:
-#			anim_tree_normal_playback.travel("walk_E")
-#		DIR_W:
-#			anim_tree_normal_playback.travel("walk_W")
+	match facing:
+		DIR_S:
+			anim_tree_normal_playback.travel("walk_S")
+		DIR_N:
+			anim_tree_normal_playback.travel("walk_N")
+		DIR_E:
+			anim_tree_normal_playback.travel("walk_E")
+		DIR_W:
+			anim_tree_normal_playback.travel("walk_W")
 	
-	if Input.is_action_just_pressed("attack") and not $Axe.swinging and $Axe.cooldown <= 0:
+	if dir.length_squared() == 0:
+		anim_tree_normal_playback.travel("default")
+	
+	if Input.is_action_just_pressed("attack") and not $Pickaxe.swinging and $Pickaxe.cooldown <= 0:
 		match facing:
 			DIR_N:
-				$Axe.rotation_degrees = 180
+				$Pickaxe.rotation_degrees = 180
 			DIR_S:
-				$Axe.rotation_degrees = 0
+				$Pickaxe.rotation_degrees = 0
 			DIR_E:
-				$Axe.rotation_degrees = 180 + 90
+				$Pickaxe.rotation_degrees = 180 + 90
 			DIR_W:
-				$Axe.rotation_degrees = 90
-		$Axe.swing()
+				$Pickaxe.rotation_degrees = 90
+		$Pickaxe.swing()
 
 
 func _on_InvulnTimer_timeout():
 	invuln = false
+	$Sprite.modulate = Color(1, 1, 1)
 
 func get_hit():
 	if not dead and not invuln:
+		$Sprite.modulate = Color(1, 0.5, 0.5)
 		current_health -= 1
 		if current_health == 0:
 			be_dead()
