@@ -10,7 +10,7 @@ func swing():
 		#$SfxAxe.play()
 		show()
 		$CollisionShape2D.disabled = false
-		$AxeSprite.play()
+		$PickaxeSprite.play()
 		swinging = true
 
 
@@ -18,21 +18,21 @@ func swing():
 func _ready():
 	hide()
 	$CollisionShape2D.disabled = true
-	$AxeSprite.stop()
+	$PickaxeSprite.stop()
 
 
-func _on_AxeSprite_animation_finished():
+func _on_PickaxeSprite_animation_finished():
 	hide()
 	$CollisionShape2D.disabled = true
-	$AxeSprite.stop()
+	$PickaxeSprite.stop()
 	cooldown = .5
 	swinging = false
 
 
-func _on_Axe_body_entered(body):
+func _on_Pickaxe_body_entered(body):
 	if body.is_in_group("enemy"):
-		print("hit: " + body.name)
-		body.get_hit()
+		#print("hit: " + body.name)
+		body.get_hit(get_parent().attack_power)
 
 
 func _process(delta):

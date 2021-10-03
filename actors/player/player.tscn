@@ -169,16 +169,17 @@ frame = 3
 
 [node name="InvulnTimer" type="Timer" parent="."]
 
-[node name="Axe" type="Area2D" parent="."]
+[node name="Pickaxe" type="Area2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickaxe"]
 position = Vector2( 0, 16 )
 shape = SubResource( 1 )
 
-[node name="AxeSprite" type="AnimatedSprite" parent="Axe"]
-position = Vector2( 0, 8 )
+[node name="PickaxeSprite" type="AnimatedSprite" parent="Pickaxe"]
+position = Vector2( 0, 12 )
 frames = ExtResource( 3 )
+flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/default = SubResource( 8 )
@@ -196,5 +197,5 @@ parameters/normal/playback_speed/scale = 1.0
 parameters/normal/state_machine/playback = SubResource( 7 )
 
 [connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]
-[connection signal="body_entered" from="Axe" to="Axe" method="_on_Axe_body_entered"]
-[connection signal="animation_finished" from="Axe/AxeSprite" to="Axe" method="_on_AxeSprite_animation_finished"]
+[connection signal="body_entered" from="Pickaxe" to="Pickaxe" method="_on_Pickaxe_body_entered"]
+[connection signal="animation_finished" from="Pickaxe/PickaxeSprite" to="Pickaxe" method="_on_PickaxeSprite_animation_finished"]
