@@ -55,7 +55,7 @@ func _process_alive(delta):
 		dir.y += 1.0
 	if Input.is_action_pressed("move_up"):
 		dir.y -= 1.0
-		
+	
 	var move_speed = 0.0 if dir.length_squared() == 0 else 1.0
 	
 	move_and_slide(dir * move_speed * base_move_speed)
