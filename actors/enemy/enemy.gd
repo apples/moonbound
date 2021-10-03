@@ -6,11 +6,12 @@ var current_health = 10
 var dead = false
 var type = 0
 var crypto_tribe = 0
+var facing_right = false
 
 #pick 6 from the following
 var base_regen_rate = 1
 var base_armor = 3
-export var base_move_speed = 50.0
+var base_move_speed = 50.0#0
 var base_attack_power = 5
 var base_attack_speed = 2
 var base_ranged_attack_power = 3
@@ -40,7 +41,18 @@ func _process_alive(delta):
 	if not dead:
 		var dir = Vector2(0, 0)
 		var vec = player.position - position
-		dir = vec.normalized()
+		
+		if vec.length() < 16 * 5:
+			dir = vec.normalized()
+			if(dir.x > 0):
+				if(!facing_right):
+					facing_right = true
+					$Sprite.flip_h = true
+			else:
+				if(facing_right):
+					facing_right = false
+					$Sprite.flip_h = false
+		
 		move_and_slide(dir * base_move_speed)
 		
 		for i in get_slide_count():

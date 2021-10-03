@@ -36,7 +36,6 @@ script = ExtResource( 2 )
 
 [node name="enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 103.429, -18.3572 )
-base_move_speed = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
