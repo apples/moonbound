@@ -96,7 +96,7 @@ func _on_InvulnTimer_timeout():
 
 func get_hit():
 	if not dead and not invuln:
-		$Sprite.modulate = Color(1, 0, 0)
+		$Sprite.modulate = Color(1, 0.5, 0.5)
 		current_health -= 1
 		if current_health == 0:
 			be_dead()

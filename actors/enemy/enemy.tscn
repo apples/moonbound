@@ -19,4 +19,8 @@ polygon = PoolVector2Array( -16, -24, -16, 24, 16, 24, 16, -24 )
 
 [node name="DeadTimer" type="Timer" parent="."]
 
+[node name="InvulnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="DeadTimer" to="." method="_on_DeadTimer_timeout"]
+[connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]

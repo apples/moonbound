@@ -49,16 +49,21 @@ func _process_alive(delta):
 				player.get_hit()
 
 func get_hit(damage, hitDir = Vector2(0, 0)):
-	$Sprite.modulate = Color(1, 0, 0)
+	$Sprite.modulate = Color(1, 0.5, 0.5)
 	if not dead:
 		if current_health > 0:
 			current_health -= damage
+			$InvulnTimer.start()
 		if current_health <= 0:
 			dead = true
 			$DeadTimer.start()
 			$CollisionPolygon2D.set_deferred("disabled", true)
-			#$AnimatedSprite.rotation_degrees = 90
+			$Sprite.rotation_degrees = 90
 			#$AnimatedSprite.stop()
 
 func _on_DeadTimer_timeout():
 	queue_free()
+
+
+func _on_InvulnTimer_timeout():
+	$Sprite.modulate = Color(1, 1, 1)

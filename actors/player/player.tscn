@@ -168,6 +168,7 @@ vframes = 5
 frame = 3
 
 [node name="InvulnTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="Pickaxe" type="Area2D" parent="."]
 script = ExtResource( 4 )
