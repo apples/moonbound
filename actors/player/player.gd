@@ -27,6 +27,7 @@ enum { DIR_N, DIR_S, DIR_E, DIR_W }
 var facing = DIR_S
 
 var room_areas = []
+var current_room_area = null
 
 onready var anim_tree = $AnimationTree
 onready var anim_tree_playback = anim_tree["parameters/playback"]
@@ -40,6 +41,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	_update_camera_area()
 	if !dead:
 		_process_alive(delta)
 	else:
@@ -128,7 +130,6 @@ func be_dead():
 func _on_BodyArea_area_entered(area: Area2D):
 	if area.is_in_group('room_area') and not area in room_areas:
 		room_areas.push_back(area)
-	_update_camera_area()
 
 
 func _on_BodyArea_area_exited(area: Area2D):
@@ -141,20 +142,21 @@ func _update_camera_area():
 		return
 	if room_areas.empty():
 		return
-	var limit_left = 10000000
-	var limit_right = -10000000
-	var limit_top = 10000000
-	var limit_bottom = -10000000
 	for area in room_areas:
 		var shape_origin: Vector2 = area.shape_owner_get_transform(0).origin
 		var shape: RectangleShape2D = area.shape_owner_get_shape(0, 0)
-		var top_left = area.global_position + shape_origin - shape.extents
-		var bottom_right = area.global_position + shape_origin + shape.extents
-		limit_left = min(limit_left, top_left.x)
-		limit_right = max(limit_right, bottom_right.x)
-		limit_top = min(limit_top, top_left.y)
-		limit_bottom = max(limit_bottom, bottom_right.y)
-	camera_node.limit_left_lerp.target = limit_left
-	camera_node.limit_right_lerp.target = limit_right
-	camera_node.limit_top_lerp.target = limit_top
-	camera_node.limit_bottom_lerp.target = limit_bottom
+		var rect = Rect2(
+			area.global_position + shape_origin - shape.extents,
+			shape.extents * 2.0)
+		if rect.has_point(self.global_position):
+			if current_room_area == area:
+				return
+			if current_room_area != null:
+				current_room_area.set_current(false)
+			current_room_area = area
+			current_room_area.set_current(true)
+			camera_node.limit_left_lerp.target = rect.position.x
+			camera_node.limit_right_lerp.target = rect.position.x + rect.size.x
+			camera_node.limit_top_lerp.target = rect.position.y
+			camera_node.limit_bottom_lerp.target = rect.position.y + rect.size.y
+			return
