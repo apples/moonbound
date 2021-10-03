@@ -29,6 +29,7 @@ func _on_actor_tree_exited():
 	actor_node = null
 
 func _on_actor_container_despawn():
-	actor_node.disconnect("tree_exited", self, "_on_actor_tree_exited")
-	actor_node.queue_free()
-	actor_node = null
+	if actor_node != null:
+		actor_node.disconnect("tree_exited", self, "_on_actor_tree_exited")
+		actor_node.queue_free()
+		actor_node = null
