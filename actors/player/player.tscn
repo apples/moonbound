@@ -91,7 +91,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 2 ), Vector2( 1, 2 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="AnimationNodeTimeScale" id=8]
@@ -173,7 +173,7 @@ polygon = PoolVector2Array( -2, -8, 2, -8, 5, -6, 5, 6, 3, 8, -3, 8, -5, 6, -5, 
 texture = ExtResource( 1 )
 hframes = 2
 vframes = 5
-frame = 3
+frame = 4
 
 [node name="InvulnTimer" type="Timer" parent="."]
 wait_time = 0.5

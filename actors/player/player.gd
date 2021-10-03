@@ -69,6 +69,12 @@ func _process_alive(delta):
 	if dir.y > 0:
 		facing = DIR_S
 		
+	if(facing == DIR_W):
+		$Sprite.flip_h = true
+	else:
+		if(facing == DIR_E):
+			$Sprite.flip_h = false
+		
 	match facing:
 		DIR_S:
 			anim_tree_normal_playback.travel("walk_S")
@@ -91,7 +97,7 @@ func _process_alive(delta):
 			DIR_E:
 				$Pickaxe.rotation_degrees = 180 + 90
 			DIR_W:
-				$Pickaxe.rotation_degrees = 90
+				$Pickaxe.rotation_degrees = 90#probably should flip sprite here
 		$Pickaxe.swing()
 
 
