@@ -45,6 +45,7 @@ position = Vector2( 480, 0 )
 position = Vector2( 119.468, 82.7691 )
 camera_path = NodePath("Camera2D")
 gold_label_path = NodePath("../CanvasLayer/RootControl/GoldLabel")
+health_label_path = NodePath("../CanvasLayer/RootControl/Control/HealthLabel")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -0.384846, 8.6845 )
@@ -106,6 +107,38 @@ custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.894118, 1, 0, 1 )
 text = "$0"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CanvasLayer/RootControl"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -75.0
+margin_right = 75.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/RootControl/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/RootControl/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -112.0
+margin_bottom = -19.0
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "10/10"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

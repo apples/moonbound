@@ -44,13 +44,13 @@ func _process_alive(delta):
 	if market_type != MarketType.Types.ATKSPEED:
 		atkspeed_market = 1.0 + (atkspeed_market - 1.0) / 2.0
 	
-	current_attack_power = base_attack_power * strength_market
-	current_attack_speed = base_attack_speed * atkspeed_market
-	current_move_speed = base_move_speed * speed_market
+	current_attack_power = int(base_attack_power * strength_market)
+	current_attack_speed = int(base_attack_speed * atkspeed_market)
+	current_move_speed = int(base_move_speed * speed_market)
 	
-	$DebugLabels/Attack.text = str(int(current_attack_power))
-	$DebugLabels/AttackSpeed.text = str(int(current_attack_speed))
-	$DebugLabels/MoveSpeed.text = str(int(current_move_speed))
+	$DebugLabels/Attack.text = str(current_attack_power)
+	$DebugLabels/AttackSpeed.text = str(current_attack_speed)
+	$DebugLabels/MoveSpeed.text = str(current_move_speed)
 	
 	var dir = Vector2(0, 0)
 	var vec = player.position - global_position
@@ -64,7 +64,7 @@ func _process_alive(delta):
 		var collision = get_slide_collision(i)
 		if(collision.collider.name == "Player"):
 			$AnimatedSprite.play("attack")
-			player.get_hit()
+			player.get_hit(current_attack_power)
 
 func _process_anim(vec, dir):
 	if vec.length() < 16 * 5 && vec.length() > 3 * 15:

@@ -6,6 +6,9 @@ onready var camera_node: Camera2D = get_node(camera_path)
 export(NodePath) var gold_label_path: NodePath
 onready var gold_label: Label = get_node(gold_label_path)
 
+export(NodePath) var health_label_path: NodePath
+onready var health_label: Label = get_node(health_label_path)
+
 var invuln = false
 var dead = false
 var base_max_health = 10
@@ -35,6 +38,7 @@ func _ready():
 	anim_tree_playback.start("normal")
 	anim_tree_normal_playback.start("default")
 	gold_label.text = "$" + str(gold)
+	health_label.text = str(current_health) + "/" + str(base_max_health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -107,13 +111,14 @@ func _on_InvulnTimer_timeout():
 	invuln = false
 	$Sprite.modulate = Color(1, 1, 1)
 
-func get_hit():
+func get_hit(damage):
 	if not dead and not invuln:
 		$Sprite.modulate = Color(1, 0.5, 0.5)
 		$SFXHit.play()
 		
-		current_health -= 1
-		if current_health == 0:
+		current_health -= damage
+		if current_health <= 0:
+			current_health = 0
 			be_dead()
 			#$SfxLose.play()
 		else:

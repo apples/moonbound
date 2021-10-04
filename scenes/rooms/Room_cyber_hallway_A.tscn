@@ -10,8 +10,8 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 
 [node name="ActorPlaceholder" parent="YSort/ActorContainer" index="0" instance=ExtResource( 2 )]
 position = Vector2( 119.528, 48 )
-actor_scene = "res://actors/enemy/cyberGoblin.tscn"
+actor_scene = "res://actors/enemy/CyberGoblin/CyberGoblin.tscn"
 
 [node name="ActorPlaceholder2" parent="YSort/ActorContainer" index="1" instance=ExtResource( 2 )]
 position = Vector2( 119.528, 112 )
-actor_scene = "res://actors/enemy/cyberGoblin.tscn"
+actor_scene = "res://actors/enemy/CyberGoblin/CyberGoblin.tscn"
