@@ -48,6 +48,9 @@ func _process(delta):
 		pass
 
 func _process_alive(delta):
+	if(global_position.x > (16 * 16 * 12) + 32):#win condition after 12 rooms to the right
+		get_tree().change_scene("res://scenes/Win.tscn")
+	
 	var dir = Vector2(0, 0)
 	if Input.is_action_pressed("move_left"):
 		dir.x -= 1.0
@@ -124,7 +127,8 @@ func be_dead():
 	$Sprite.rotation_degrees = 90
 	#anim_tree_playback.travel("normal")
 	#anim_tree_normal_playback.travel("default")
-	emit_signal("on_death", self)
+	emit_signal("on_death", self)#unused?
+	get_tree().change_scene("res://scenes/Lose.tscn")
 
 
 func _on_BodyArea_area_entered(area: Area2D):
