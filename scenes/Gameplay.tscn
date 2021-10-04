@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/rooms/Room_cyber_4way_A.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui_controls/plot/Plot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Gameplay.gd" type="Script" id=7]
+[ext_resource path="res://scenes/CanvasLayer.gd" type="Script" id=8]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 7 )
@@ -37,26 +38,35 @@ editor_draw_limits = true
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 8 )
 
-[node name="PlotMinimized" parent="CanvasLayer" instance=ExtResource( 4 )]
+[node name="RootControl" type="Control" parent="CanvasLayer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Plots" type="Control" parent="CanvasLayer"]
+[node name="PlotMinimized" parent="CanvasLayer/RootControl" instance=ExtResource( 4 )]
+
+[node name="Plots" type="Control" parent="CanvasLayer/RootControl"]
 margin_right = 960.0
 margin_bottom = 640.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StrengthPlot" parent="CanvasLayer/Plots" instance=ExtResource( 6 )]
+[node name="StrengthPlot" parent="CanvasLayer/RootControl/Plots" instance=ExtResource( 6 )]
 background_color = Color( 0.00784314, 0, 1, 0.501961 )
 
-[node name="SpeedPlot" parent="CanvasLayer/Plots" instance=ExtResource( 6 )]
+[node name="SpeedPlot" parent="CanvasLayer/RootControl/Plots" instance=ExtResource( 6 )]
 margin_top = 72.0
 margin_bottom = 136.0
 market_type = 1
 background_color = Color( 0, 1, 0.415686, 0.501961 )
 
-[node name="HealthPlot" parent="CanvasLayer/Plots" instance=ExtResource( 6 )]
+[node name="HealthPlot" parent="CanvasLayer/RootControl/Plots" instance=ExtResource( 6 )]
 margin_top = 144.0
 margin_bottom = 208.0
 market_type = 2
