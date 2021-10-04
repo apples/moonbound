@@ -8,6 +8,7 @@
 "enemy",
 ]]
 script = ExtResource( 2 )
+market_type = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

@@ -4,5 +4,5 @@ class_name MarketType
 enum Types {
 	STRENGTH,
 	SPEED,
-	HEALTH,
+	ATKSPEED,
 }
