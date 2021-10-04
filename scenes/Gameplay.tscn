@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/rooms/Room_cyber_4way_A.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui_controls/plot/Plot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Gameplay.gd" type="Script" id=7]
+[ext_resource path="res://sfx/Moonbound5.wav" type="AudioStream" id=8]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 7 )
@@ -61,3 +62,6 @@ margin_top = 144.0
 margin_bottom = 208.0
 market_type = 2
 background_color = Color( 0.827451, 0, 1, 0.501961 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )

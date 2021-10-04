@@ -7,7 +7,7 @@ var swinging = false
 
 func swing():
 	if cooldown == 0 and not swinging:
-		#$SfxAxe.play()
+		$SFXAxe.play()
 		show()
 		$CollisionShape2D.disabled = false
 		$PickaxeSprite.play()

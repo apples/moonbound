@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Lose Screen.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Lose.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 scale = Vector2( 4, 4 )
@@ -15,3 +17,5 @@ texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SFXLose" type="AudioStreamPlayer" parent="."]

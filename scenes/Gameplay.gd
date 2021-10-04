@@ -5,6 +5,7 @@ onready var plots = $CanvasLayer/Plots
 
 func _ready():
 	plots.hide()
+	$Music.play()
 
 
 func _process(delta):
