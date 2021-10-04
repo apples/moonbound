@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://actors/enemy/DebugLabels.gd" type="Script" id=2]
+[ext_resource path="res://actors/enemy/sparkle.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://font/Silver.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -23,7 +24,12 @@ polygon = PoolVector2Array( -7.82322, -8, -7.82322, 8, 8.17678, 8, 8.17678, -8 )
 wait_time = 0.5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-animation = "attack"
+
+[node name="Sparkle" type="AnimatedSprite" parent="AnimatedSprite"]
+visible = false
+frames = ExtResource( 3 )
+frame = 1
+playing = true
 
 [node name="DebugLabels" type="Control" parent="."]
 margin_right = 40.0

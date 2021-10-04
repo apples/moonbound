@@ -44,6 +44,11 @@ func _process_alive(delta):
 	if market_type != MarketType.Types.ATKSPEED:
 		atkspeed_market = 1.0 + (atkspeed_market - 1.0) / 2.0
 	
+	if Market.motions[market_type].current > 150:
+		$AnimatedSprite/Sparkle.show()
+	else:
+		$AnimatedSprite/Sparkle.hide()
+	
 	current_attack_power = int(base_attack_power * strength_market)
 	current_attack_speed = int(base_attack_speed * atkspeed_market)
 	current_move_speed = int(base_move_speed * speed_market)
