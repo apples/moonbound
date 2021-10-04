@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://actors/enemy/sokoban_tilesheet.png" type="Texture" id=1]
+[ext_resource path="res://actors/enemy/smallGoblin.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://actors/enemy/enemy.gd" type="Script" id=2]
 
 [node name="enemy" type="KinematicBody2D" groups=[
@@ -8,19 +8,19 @@
 ]]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-hframes = 13
-vframes = 8
-frame = 52
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -16, -24, -16, 24, 16, 24, 16, -24 )
+position = Vector2( 4.8, 7.2 )
+scale = Vector2( 0.8125, 0.8125 )
+polygon = PoolVector2Array( -10.8308, -13.7846, -10.8308, -3.93846, -0.984614, -3.93846, -0.984614, -13.7846 )
 
 [node name="DeadTimer" type="Timer" parent="."]
 
 [node name="InvulnTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "walk"
 
 [connection signal="timeout" from="DeadTimer" to="." method="_on_DeadTimer_timeout"]
 [connection signal="timeout" from="InvulnTimer" to="." method="_on_InvulnTimer_timeout"]
