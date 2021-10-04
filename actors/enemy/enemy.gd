@@ -28,6 +28,7 @@ var player = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
+	$AnimatedSprite.play("run")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +41,7 @@ func _process(delta):
 func _process_alive(delta):
 	if not dead:
 		var dir = Vector2(0, 0)
-		var vec = player.position - position
+		var vec = player.position - global_position
 		
 		if vec.length() < 16 * 5:
 			dir = vec.normalized()
@@ -52,6 +53,11 @@ func _process_alive(delta):
 				if(facing_right):
 					facing_right = false
 					$AnimatedSprite.flip_h = false
+			
+			if !$AnimatedSprite.is_playing():
+				$AnimatedSprite.play("run")
+		elif $AnimatedSprite.is_playing():
+			$AnimatedSprite.stop()
 		
 		move_and_slide(dir * base_move_speed)
 		
@@ -71,6 +77,7 @@ func get_hit(damage, hitDir = Vector2(0, 0)):
 			$DeadTimer.start()
 			$CollisionPolygon2D.set_deferred("disabled", true)
 			$AnimatedSprite.rotation_degrees = 90
+			$AnimatedSprite.stop()
 			#$AnimatedSprite.stop()
 
 func _on_DeadTimer_timeout():
