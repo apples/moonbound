@@ -28,7 +28,7 @@ var player = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
-	$AnimatedSprite.play("run")
+	$AnimatedSprite.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,8 +42,27 @@ func _process_alive(delta):
 	if not dead:
 		var dir = Vector2(0, 0)
 		var vec = player.position - global_position
+		_process_anim(vec, dir)
 		
 		if vec.length() < 16 * 5:
+			dir = vec.normalized()
+			move_and_slide(dir * base_move_speed)
+		
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if(collision.collider.name == "Player"):
+				$AnimatedSprite.play("attack")
+				player.get_hit()
+				
+func _process_anim(vec, dir):
+		if vec.length() < 16 * 5 && vec.length() > 3 * 15:
+			$AnimatedSprite.play("walk")
+		
+		if vec.length() <= 1 * 15:
+			$AnimatedSprite.play("attack")
+			
+		if vec.length() < 16 * 5:
+			
 			dir = vec.normalized()
 			if(dir.x > 0):
 				if(!facing_right):
@@ -57,14 +76,7 @@ func _process_alive(delta):
 			if !$AnimatedSprite.is_playing():
 				$AnimatedSprite.play("run")
 		elif $AnimatedSprite.is_playing():
-			$AnimatedSprite.stop()
-		
-		move_and_slide(dir * base_move_speed)
-		
-		for i in get_slide_count():
-			var collision = get_slide_collision(i)
-			if(collision.collider.name == "Player"):
-				player.get_hit()
+			$AnimatedSprite.play("idle")
 
 func get_hit(damage, hitDir = Vector2(0, 0)):
 	$AnimatedSprite.modulate = Color(1, 0.5, 0.5)
