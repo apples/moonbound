@@ -1,9 +1,11 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://actors/player/miner.png" type="Texture" id=1]
 [ext_resource path="res://actors/player/player.gd" type="Script" id=2]
 [ext_resource path="res://actors/player/axeframes.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://actors/player/Axe.gd" type="Script" id=4]
+[ext_resource path="res://sfx/axe.wav" type="AudioStream" id=5]
+[ext_resource path="res://sfx/hurt.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -190,6 +192,9 @@ position = Vector2( 0, 12 )
 frames = ExtResource( 3 )
 flip_v = true
 
+[node name="SFXAxe" type="AudioStreamPlayer" parent="Pickaxe"]
+stream = ExtResource( 5 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/default = SubResource( 3 )
 anims/walk_E = SubResource( 4 )
@@ -204,6 +209,9 @@ active = true
 parameters/playback = SubResource( 25 )
 parameters/normal/playback_speed/scale = 1.0
 parameters/normal/state_machine/playback = SubResource( 26 )
+
+[node name="SFXHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="area_entered" from="BodyArea" to="." method="_on_BodyArea_area_entered"]
 [connection signal="area_exited" from="BodyArea" to="." method="_on_BodyArea_area_exited"]
