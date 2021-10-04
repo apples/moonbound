@@ -47,11 +47,11 @@ func _process_alive(delta):
 			if(dir.x > 0):
 				if(!facing_right):
 					facing_right = true
-					$Sprite.flip_h = true
+					$AnimatedSprite.flip_h = true
 			else:
 				if(facing_right):
 					facing_right = false
-					$Sprite.flip_h = false
+					$AnimatedSprite.flip_h = false
 		
 		move_and_slide(dir * base_move_speed)
 		
@@ -61,7 +61,7 @@ func _process_alive(delta):
 				player.get_hit()
 
 func get_hit(damage, hitDir = Vector2(0, 0)):
-	$Sprite.modulate = Color(1, 0.5, 0.5)
+	$AnimatedSprite.modulate = Color(1, 0.5, 0.5)
 	if not dead:
 		if current_health > 0:
 			current_health -= damage
@@ -70,7 +70,7 @@ func get_hit(damage, hitDir = Vector2(0, 0)):
 			dead = true
 			$DeadTimer.start()
 			$CollisionPolygon2D.set_deferred("disabled", true)
-			$Sprite.rotation_degrees = 90
+			$AnimatedSprite.rotation_degrees = 90
 			#$AnimatedSprite.stop()
 
 func _on_DeadTimer_timeout():
@@ -78,4 +78,4 @@ func _on_DeadTimer_timeout():
 
 
 func _on_InvulnTimer_timeout():
-	$Sprite.modulate = Color(1, 1, 1)
+	$AnimatedSprite.modulate = Color(1, 1, 1)
