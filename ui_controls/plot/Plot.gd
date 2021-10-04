@@ -4,13 +4,15 @@ extends Container
 export(MarketType.Types) var market_type
 export(Color) var background_color = Color('#805000ff') setget _set_background_color
 
-onready var motion: GeomBrownMotion = Market.motions[market_type]
+onready var motion: GeomBrownMotion
 
 func _ready():
 	if background_color != null:
 		$Background.color = background_color
 	if Engine.is_editor_hint():
 		set_process(false)
+		return
+	motion = Market.motions[market_type]
 
 func _process(delta):
 	if Engine.is_editor_hint():

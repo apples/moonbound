@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://scenes/RoomManager.gd" type="Script" id=3]
+[ext_resource path="res://ui_controls/plot_minimized/PlotMinimized.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/rooms/Room_cyber_4way_A.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui_controls/plot/Plot.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Gameplay.gd" type="Script" id=7]
 
 [node name="Gameplay" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="RoomManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -35,24 +38,26 @@ script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-margin_right = 1024.0
-margin_bottom = 598.0
+[node name="PlotMinimized" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="Plots" type="Control" parent="CanvasLayer"]
+margin_right = 960.0
+margin_bottom = 640.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StrengthPlot" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="StrengthPlot" parent="CanvasLayer/Plots" instance=ExtResource( 6 )]
 background_color = Color( 0.00784314, 0, 1, 0.501961 )
 
-[node name="SpeedPlot" parent="CanvasLayer" instance=ExtResource( 6 )]
-margin_top = 64.0
-margin_bottom = -512.0
+[node name="SpeedPlot" parent="CanvasLayer/Plots" instance=ExtResource( 6 )]
+margin_top = 72.0
+margin_bottom = 136.0
 market_type = 1
 background_color = Color( 0, 1, 0.415686, 0.501961 )
 
-[node name="HealthPlot" parent="CanvasLayer" instance=ExtResource( 6 )]
-margin_top = 128.0
-margin_bottom = -448.0
+[node name="HealthPlot" parent="CanvasLayer/Plots" instance=ExtResource( 6 )]
+margin_top = 144.0
+margin_bottom = 208.0
 market_type = 2
 background_color = Color( 0.827451, 0, 1, 0.501961 )
