@@ -121,7 +121,7 @@ func get_hit():
 
 func be_dead():
 	dead = true
-	#$AnimatedSprite.rotation_degrees = 90
+	$Sprite.rotation_degrees = 90
 	#anim_tree_playback.travel("normal")
 	#anim_tree_normal_playback.travel("default")
 	emit_signal("on_death", self)
