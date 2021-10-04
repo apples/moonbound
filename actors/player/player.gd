@@ -220,3 +220,11 @@ func _on_HealthPlot_sell(plot):
 	plot.stat_value = base_attack_speed
 	plot.motion.current -= 10
 	gold_label.text = "$" + str(gold)
+
+
+func _on_HealButton_pressed():
+	if gold >= 10 and current_health != base_max_health:
+		gold -= 10
+		current_health = base_max_health
+		health_label.text = str(current_health) + "/" + str(base_max_health)
+		gold_label.text = "$" + str(gold)

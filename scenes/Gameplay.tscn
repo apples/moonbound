@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
@@ -39,11 +39,21 @@
 [ext_resource path="res://scenes/rooms/Oasis/Room_oasis_diag_B.tscn" type="PackedScene" id=37]
 [ext_resource path="res://scenes/rooms/Oasis/Room_oasis_boss.tscn" type="PackedScene" id=38]
 [ext_resource path="res://scenes/rooms/Oasis/Room_oasis_diag_A.tscn" type="PackedScene" id=39]
+[ext_resource path="res://scenes/VolatilityEvent.gd" type="Script" id=40]
+
+[sub_resource type="DynamicFont" id=3]
+size = 38
+extra_spacing_bottom = -10
+font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 76
 font_data = ExtResource( 11 )
 
 [node name="Gameplay" type="Node2D"]
@@ -236,11 +246,15 @@ drag_margin_v_enabled = true
 editor_draw_limits = true
 script = ExtResource( 2 )
 
+[node name="VolatilityEvent" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 40 )
+warning_path = NodePath("../CanvasLayer/RootControl/VolatilityWarning")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
 
 [node name="RootControl" type="Control" parent="CanvasLayer"]
-visible = false
 margin_right = 960.0
 margin_bottom = 640.0
 __meta__ = {
@@ -271,6 +285,14 @@ margin_bottom = 208.0
 market_type = 2
 background_color = Color( 0.827451, 0, 1, 0.501961 )
 
+[node name="HealButton" type="Button" parent="CanvasLayer/RootControl/Plots"]
+margin_left = 655.224
+margin_top = 82.1951
+margin_right = 811.224
+margin_bottom = 120.195
+custom_fonts/font = SubResource( 3 )
+text = "Full Heal (10)"
+
 [node name="GoldLabel" type="Label" parent="CanvasLayer/RootControl"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -290,8 +312,8 @@ __meta__ = {
 [node name="Control" type="Control" parent="CanvasLayer/RootControl"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -75.0
-margin_right = 75.0
+margin_left = 176.84
+margin_right = 326.84
 margin_bottom = 56.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -309,7 +331,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -112.0
-margin_bottom = -19.0
+margin_bottom = -35.0
 rect_scale = Vector2( 4, 4 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -319,12 +341,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VolatilityWarning" type="Control" parent="CanvasLayer/RootControl"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -71.0
+margin_right = 229.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/RootControl/VolatilityWarning"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.807843 )
+
+[node name="Label" type="Label" parent="CanvasLayer/RootControl/VolatilityWarning"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "Volatile Markets!"
+align = 1
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 
+[connection signal="timeout" from="VolatilityEvent" to="VolatilityEvent" method="_on_VolatilityEvent_timeout"]
 [connection signal="buy" from="CanvasLayer/RootControl/Plots/StrengthPlot" to="Player" method="_on_StrengthPlot_buy"]
 [connection signal="sell" from="CanvasLayer/RootControl/Plots/StrengthPlot" to="Player" method="_on_StrengthPlot_sell"]
 [connection signal="buy" from="CanvasLayer/RootControl/Plots/SpeedPlot" to="Player" method="_on_SpeedPlot_buy"]
 [connection signal="sell" from="CanvasLayer/RootControl/Plots/SpeedPlot" to="Player" method="_on_SpeedPlot_sell"]
 [connection signal="buy" from="CanvasLayer/RootControl/Plots/HealthPlot" to="Player" method="_on_HealthPlot_buy"]
 [connection signal="sell" from="CanvasLayer/RootControl/Plots/HealthPlot" to="Player" method="_on_HealthPlot_sell"]
+[connection signal="pressed" from="CanvasLayer/RootControl/Plots/HealButton" to="Player" method="_on_HealButton_pressed"]
