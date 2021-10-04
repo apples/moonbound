@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Lose Screen.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Lose.gd" type="Script" id=2]
+[ext_resource path="res://font/Silver.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 19
+extra_spacing_bottom = -8
+font_data = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -18,4 +24,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 100.406
+margin_top = 135.453
+margin_right = 142.406
+margin_bottom = 155.453
+custom_fonts/font = SubResource( 1 )
+text = "Retry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SFXLose" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
