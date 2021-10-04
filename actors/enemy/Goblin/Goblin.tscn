@@ -5,6 +5,8 @@
 
 [node name="Goblin" instance=ExtResource( 1 )]
 market_type = 2
+base_move_speed = 40.0
+base_attack_power = 3.0
 
 [node name="AnimatedSprite" parent="." index="3"]
 frames = ExtResource( 2 )

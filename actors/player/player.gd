@@ -125,6 +125,7 @@ func get_hit(damage):
 			invuln = true
 			$InvulnTimer.start()
 			#$SfxHurt.play()
+		health_label.text = str(current_health) + "/" + str(base_max_health)
 
 func be_dead():
 	dead = true
