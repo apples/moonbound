@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Moonbound"
-run/main_scene="res://scenes/Gameplay.tscn"
+run/main_scene="res://scenes/Title.tscn"
 config/icon="res://icon.png"
 
 [autoload]
