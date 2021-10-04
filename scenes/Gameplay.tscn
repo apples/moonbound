@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
@@ -26,6 +26,19 @@
 [ext_resource path="res://scenes/rooms/Cyber/Room_cyber_corner_NE.tscn" type="PackedScene" id=24]
 [ext_resource path="res://scenes/rooms/Cyber/Room_cyber_corner_NW.tscn" type="PackedScene" id=25]
 [ext_resource path="res://scenes/rooms/Cyber/Room_cyber_end_west.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_corner_SW.tscn" type="PackedScene" id=27]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_toOasis_A.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_4way_A.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_corner_NE.tscn" type="PackedScene" id=30]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_corner_SE.tscn" type="PackedScene" id=31]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_fromCyber_A.tscn" type="PackedScene" id=32]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_big_A.tscn" type="PackedScene" id=33]
+[ext_resource path="res://scenes/rooms/Desert/Room_desert_corner_NW.tscn" type="PackedScene" id=34]
+[ext_resource path="res://scenes/rooms/Oasis/Room_oasis_win.tscn" type="PackedScene" id=35]
+[ext_resource path="res://scenes/rooms/Oasis/Room_oasis_4way_A.tscn" type="PackedScene" id=36]
+[ext_resource path="res://scenes/rooms/Oasis/Room_oasis_diag_B.tscn" type="PackedScene" id=37]
+[ext_resource path="res://scenes/rooms/Oasis/Room_oasis_boss.tscn" type="PackedScene" id=38]
+[ext_resource path="res://scenes/rooms/Oasis/Room_oasis_diag_A.tscn" type="PackedScene" id=39]
 
 [sub_resource type="DynamicFont" id=1]
 size = 19
@@ -98,6 +111,111 @@ position = Vector2( 720, -320 )
 
 [node name="Room_cyber_hallway_B2" parent="RoomManager" instance=ExtResource( 16 )]
 position = Vector2( 720, 0 )
+
+[node name="Room_desert_4way_A" parent="RoomManager" instance=ExtResource( 29 )]
+position = Vector2( 2400, 320 )
+
+[node name="Room_desert_4way_A4" parent="RoomManager" instance=ExtResource( 29 )]
+position = Vector2( 1680, 480 )
+
+[node name="Room_desert_4way_A3" parent="RoomManager" instance=ExtResource( 29 )]
+position = Vector2( 2160, 320 )
+
+[node name="Room_desert_4way_A5" parent="RoomManager" instance=ExtResource( 29 )]
+position = Vector2( 1920, 480 )
+
+[node name="Room_desert_4way_A2" parent="RoomManager" instance=ExtResource( 33 )]
+position = Vector2( 1680, 160 )
+
+[node name="Room_desert_corner_NW" parent="RoomManager" instance=ExtResource( 30 )]
+position = Vector2( 2640, 480 )
+
+[node name="Room_desert_corner_NW3" parent="RoomManager" instance=ExtResource( 30 )]
+position = Vector2( 2160, 480 )
+
+[node name="Room_desert_corner_NW2" parent="RoomManager" instance=ExtResource( 34 )]
+position = Vector2( 2400, 480 )
+
+[node name="Room_desert_corner_NW6" parent="RoomManager" instance=ExtResource( 34 )]
+position = Vector2( 1440, 480 )
+
+[node name="Room_desert_corner_NW4" parent="RoomManager" instance=ExtResource( 30 )]
+position = Vector2( 1920, 640 )
+
+[node name="Room_desert_corner_NW5" parent="RoomManager" instance=ExtResource( 34 )]
+position = Vector2( 1680, 640 )
+
+[node name="Room_desert_corner_SE" parent="RoomManager" instance=ExtResource( 31 )]
+position = Vector2( 1440, 160 )
+
+[node name="Room_desert_corner_SE2" parent="RoomManager" instance=ExtResource( 31 )]
+position = Vector2( 2400, 160 )
+
+[node name="Room_desert_corner_SW" parent="RoomManager" instance=ExtResource( 27 )]
+position = Vector2( 2640, 160 )
+
+[node name="Room_desert_corner_SW3" parent="RoomManager" instance=ExtResource( 27 )]
+position = Vector2( 2160, 160 )
+
+[node name="Room_desert_fromCyber_A" parent="RoomManager" instance=ExtResource( 32 )]
+position = Vector2( 2640, 320 )
+
+[node name="Room_desert_corner_SE4" parent="RoomManager" instance=ExtResource( 31 )]
+position = Vector2( 1680, 0 )
+
+[node name="Room_desert_corner_SW2" parent="RoomManager" instance=ExtResource( 27 )]
+position = Vector2( 1920, 0 )
+
+[node name="Room_desert_toOasis_A" parent="RoomManager" instance=ExtResource( 28 )]
+position = Vector2( 1440, 320 )
+
+[node name="Room_oasis_4way_A" parent="RoomManager" instance=ExtResource( 36 )]
+position = Vector2( 2880, 320 )
+
+[node name="Room_oasis_4way_A2" parent="RoomManager" instance=ExtResource( 36 )]
+position = Vector2( 3360, 320 )
+
+[node name="Room_oasis_4way_A3" parent="RoomManager" instance=ExtResource( 36 )]
+position = Vector2( 3120, 160 )
+
+[node name="Room_oasis_boss" parent="RoomManager" instance=ExtResource( 38 )]
+position = Vector2( 3840, 160 )
+
+[node name="Room_oasis_diag_A" parent="RoomManager" instance=ExtResource( 39 )]
+position = Vector2( 2880, 480 )
+
+[node name="Room_oasis_diag_A5" parent="RoomManager" instance=ExtResource( 39 )]
+position = Vector2( 3360, 480 )
+
+[node name="Room_oasis_diag_A2" parent="RoomManager" instance=ExtResource( 39 )]
+position = Vector2( 3120, 320 )
+
+[node name="Room_oasis_diag_A3" parent="RoomManager" instance=ExtResource( 39 )]
+position = Vector2( 3360, 0 )
+
+[node name="Room_oasis_diag_A4" parent="RoomManager" instance=ExtResource( 39 )]
+position = Vector2( 3600, 160 )
+
+[node name="Room_oasis_diag_B" parent="RoomManager" instance=ExtResource( 37 )]
+position = Vector2( 2880, 160 )
+
+[node name="Room_oasis_diag_B2" parent="RoomManager" instance=ExtResource( 37 )]
+position = Vector2( 3120, 480 )
+
+[node name="Room_oasis_diag_B6" parent="RoomManager" instance=ExtResource( 37 )]
+position = Vector2( 3600, 480 )
+
+[node name="Room_oasis_diag_B7" parent="RoomManager" instance=ExtResource( 37 )]
+position = Vector2( 3600, 320 )
+
+[node name="Room_oasis_diag_B4" parent="RoomManager" instance=ExtResource( 37 )]
+position = Vector2( 3120, 0 )
+
+[node name="Room_oasis_diag_B5" parent="RoomManager" instance=ExtResource( 37 )]
+position = Vector2( 3360, 160 )
+
+[node name="Room_oasis_win" parent="RoomManager" instance=ExtResource( 35 )]
+position = Vector2( 4080, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 119.468, 82.7691 )
