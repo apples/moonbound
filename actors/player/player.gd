@@ -43,15 +43,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_update_camera_area()
+	if Input.is_action_pressed("cheat"):
+		_set_gold(gold + 10)
 	if !dead:
 		_process_alive(delta)
 	else:
 		pass
 
 func _process_alive(delta):
-	if(global_position.x > (16 * 16 * 12) + 32):#win condition after 12 rooms to the right
-		get_tree().change_scene("res://scenes/Win.tscn")
-	
 	var dir = Vector2(0, 0)
 	if Input.is_action_pressed("move_left"):
 		dir.x -= 1.0
