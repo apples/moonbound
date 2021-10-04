@@ -255,6 +255,7 @@ warning_path = NodePath("../CanvasLayer/RootControl/VolatilityWarning")
 script = ExtResource( 8 )
 
 [node name="RootControl" type="Control" parent="CanvasLayer"]
+visible = false
 margin_right = 960.0
 margin_bottom = 640.0
 __meta__ = {

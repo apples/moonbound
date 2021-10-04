@@ -31,7 +31,7 @@ onready var anim_tree = $AnimationTree
 onready var anim_tree_playback = anim_tree["parameters/playback"]
 onready var anim_tree_normal_playback = anim_tree["parameters/normal/state_machine/playback"]
 
-var gold: int = 10
+var gold: int = 10 setget _set_gold
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -181,11 +181,12 @@ func _on_StrengthPlot_buy(plot):
 
 
 func _on_StrengthPlot_sell(plot):
-	gold += plot.price
-	base_attack_power -= 1
-	plot.stat_value = base_attack_power
-	plot.motion.current -= 10
-	gold_label.text = "$" + str(gold)
+	if base_attack_power > 0:
+		gold += plot.price
+		base_attack_power -= 1
+		plot.stat_value = base_attack_power
+		plot.motion.current -= 10
+		gold_label.text = "$" + str(gold)
 
 
 func _on_SpeedPlot_buy(plot):
@@ -198,33 +199,40 @@ func _on_SpeedPlot_buy(plot):
 
 
 func _on_SpeedPlot_sell(plot):
-	gold += plot.price
-	base_move_speed -= 5
-	plot.stat_value = int(base_move_speed / 5)
-	plot.motion.current -= 10
-	gold_label.text = "$" + str(gold)
+	if base_move_speed >= 5:
+		gold += plot.price
+		base_move_speed -= 5
+		plot.stat_value = int(base_move_speed / 5)
+		plot.motion.current -= 10
+		gold_label.text = "$" + str(gold)
 
 
 func _on_HealthPlot_buy(plot):
 	if gold >= plot.price:
 		gold -= plot.price
 		base_attack_speed += 1
+		$Pickaxe/PickaxeSprite.speed_scale = base_attack_speed / 2.0
 		plot.stat_value = base_attack_speed
 		plot.motion.current += 10
 		gold_label.text = "$" + str(gold)
 
 
 func _on_HealthPlot_sell(plot):
-	gold += plot.price
-	base_attack_speed -= 1
-	plot.stat_value = base_attack_speed
-	plot.motion.current -= 10
-	gold_label.text = "$" + str(gold)
+	if base_attack_speed > 0:
+		gold += plot.price
+		base_attack_speed -= 1
+		$Pickaxe/PickaxeSprite.speed_scale = base_attack_speed / 2.0
+		plot.stat_value = base_attack_speed
+		plot.motion.current -= 10
+		gold_label.text = "$" + str(gold)
 
 
 func _on_HealButton_pressed():
 	if gold >= 10 and current_health != base_max_health:
-		gold -= 10
+		_set_gold(gold - 10)
 		current_health = base_max_health
 		health_label.text = str(current_health) + "/" + str(base_max_health)
-		gold_label.text = "$" + str(gold)
+
+func _set_gold(g: int):
+	gold = g
+	gold_label.text = "$" + str(gold)

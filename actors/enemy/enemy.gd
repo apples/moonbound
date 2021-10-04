@@ -98,6 +98,7 @@ func get_hit(damage, hitDir = Vector2(0, 0)):
 			$InvulnTimer.start()
 		if current_health <= 0:
 			dead = true
+			player.gold = player.gold + 1
 			$DeadTimer.start()
 			$CollisionPolygon2D.set_deferred("disabled", true)
 			$AnimatedSprite.rotation_degrees = 90

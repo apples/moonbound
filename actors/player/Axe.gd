@@ -25,7 +25,7 @@ func _on_PickaxeSprite_animation_finished():
 	hide()
 	$CollisionShape2D.disabled = true
 	$PickaxeSprite.stop()
-	cooldown = .5 * 2.0 / get_parent().base_attack_power
+	cooldown = .5 * 2.0 / get_parent().base_attack_speed
 	swinging = false
 
 
