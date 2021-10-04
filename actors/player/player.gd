@@ -1,7 +1,10 @@
 extends KinematicBody2D
 
 export(NodePath) var camera_path: NodePath
-onready var camera_node: Camera2D = get_node_or_null(camera_path)
+onready var camera_node: Camera2D = get_node(camera_path)
+
+export(NodePath) var gold_label_path: NodePath
+onready var gold_label: Label = get_node(gold_label_path)
 
 var invuln = false
 var dead = false
@@ -11,17 +14,9 @@ var current_health = 10
 #pick 6 from the following
 var regen_rate = 1
 var armor = 3
-#var base_move_speed = 50
-var attack_power = 5
-var attack_speed = 2
-var ranged_attack_power = 3
-var ranged_attack_speed = 3
-var stamina = 20
-var crit_chance = 5
-var dodge_chance = 5
-var attack_range = 20
-
-const base_move_speed = 100.0
+var base_move_speed = 50
+var base_attack_power = 5
+var base_attack_speed = 2
 
 enum { DIR_N, DIR_S, DIR_E, DIR_W }
 var facing = DIR_S
@@ -33,11 +28,13 @@ onready var anim_tree = $AnimationTree
 onready var anim_tree_playback = anim_tree["parameters/playback"]
 onready var anim_tree_normal_playback = anim_tree["parameters/normal/state_machine/playback"]
 
+var gold: int = 10
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim_tree_playback.start("normal")
 	anim_tree_normal_playback.start("default")
-
+	gold_label.text = "$" + str(gold)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -166,3 +163,54 @@ func _update_camera_area():
 			camera_node.limit_top_lerp.target = rect.position.y
 			camera_node.limit_bottom_lerp.target = rect.position.y + rect.size.y
 			return
+
+
+func _on_StrengthPlot_buy(plot):
+	if gold >= plot.price:
+		gold -= plot.price
+		base_attack_power += 1
+		plot.stat_value = base_attack_power
+		plot.motion.current += 10
+		gold_label.text = "$" + str(gold)
+
+
+func _on_StrengthPlot_sell(plot):
+	gold += plot.price
+	base_attack_power -= 1
+	plot.stat_value = base_attack_power
+	plot.motion.current -= 10
+	gold_label.text = "$" + str(gold)
+
+
+func _on_SpeedPlot_buy(plot):
+	if gold >= plot.price:
+		gold -= plot.price
+		base_move_speed += 5
+		plot.stat_value = int(base_move_speed / 5)
+		plot.motion.current += 10
+		gold_label.text = "$" + str(gold)
+
+
+func _on_SpeedPlot_sell(plot):
+	gold += plot.price
+	base_move_speed -= 5
+	plot.stat_value = int(base_move_speed / 5)
+	plot.motion.current -= 10
+	gold_label.text = "$" + str(gold)
+
+
+func _on_HealthPlot_buy(plot):
+	if gold >= plot.price:
+		gold -= plot.price
+		base_attack_speed += 1
+		plot.stat_value = base_attack_speed
+		plot.motion.current += 10
+		gold_label.text = "$" + str(gold)
+
+
+func _on_HealthPlot_sell(plot):
+	gold += plot.price
+	base_attack_speed -= 1
+	plot.stat_value = base_attack_speed
+	plot.motion.current -= 10
+	gold_label.text = "$" + str(gold)

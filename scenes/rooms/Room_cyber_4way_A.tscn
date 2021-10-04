@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/rooms/RoomBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/rooms/ActorPlaceholder.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/enemy/cyberGoblin.tscn" type="PackedScene" id=3]
 
 [node name="Room_cyber_4way_A" instance=ExtResource( 1 )]
 
@@ -11,7 +10,8 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 
 [node name="ActorPlaceholder" parent="YSort/ActorContainer" index="0" instance=ExtResource( 2 )]
 position = Vector2( 39.5281, 40 )
-actor_scene = "res://actors/enemy/golbin.tscn"
+actor_scene = "res://actors/enemy/Goblin/Goblin.tscn"
 
-[node name="enemy" parent="YSort/ActorContainer/ActorPlaceholder" index="0" instance=ExtResource( 3 )]
-position = Vector2( 21.1537, 74.4876 )
+[node name="ActorPlaceholder2" parent="YSort/ActorContainer" index="1" instance=ExtResource( 2 )]
+position = Vector2( 191.528, 40 )
+actor_scene = "res://actors/enemy/CyberGoblin/CyberGoblin.tscn"

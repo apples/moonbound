@@ -25,14 +25,14 @@ func _on_PickaxeSprite_animation_finished():
 	hide()
 	$CollisionShape2D.disabled = true
 	$PickaxeSprite.stop()
-	cooldown = .5
+	cooldown = .5 * 2.0 / get_parent().base_attack_power
 	swinging = false
 
 
 func _on_Pickaxe_body_entered(body):
 	if body.is_in_group("enemy"):
 		#print("hit: " + body.name)
-		body.get_hit(get_parent().attack_power)
+		body.get_hit(get_parent().base_attack_power)
 
 
 func _process(delta):

@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=15 format=2]
 
-[ext_resource path="res://actors/enemy/tehcno_goblin.png" type="Texture" id=1]
+[ext_resource path="res://actors/enemy/CyberGoblin/tehcno_goblin.png" type="Texture" id=1]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

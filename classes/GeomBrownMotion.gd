@@ -30,7 +30,7 @@ func update(delta: float):
 	while elapsed_t >= delta_t:
 		elapsed_t -= delta_t
 		var dW = rng.randfn(0, sqrt(delta_t))
-		var dS = current * (delta_t * drift + dW * volatility)
+		var dS = 100.0 * (delta_t * drift + dW * volatility)
 		current += dS
 		history.append(current)
 		history.pop_front()

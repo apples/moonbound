@@ -7,6 +7,8 @@ extends CanvasLayer
 func _ready():
 	if Engine.is_editor_hint():
 		$RootControl.visible = false
+	else:
+		$RootControl.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

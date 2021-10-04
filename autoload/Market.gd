@@ -1,7 +1,7 @@
 extends Node
 
 var initial_drift = 0
-var initial_volatility = 0.5
+var initial_volatility = 0.1
 var delta_t = 0.25
 
 var motions = {}
@@ -22,9 +22,9 @@ func _ready():
 func _process(delta):
 	for mt in motions:
 		if motions[mt].current > 190:
-			motions[mt].drift = -0.5
+			motions[mt].drift = -1.0
 		elif motions[mt].current < 10:
-			motions[mt].drift = 0.5
+			motions[mt].drift = 1.0
 		else:
-			motions[mt].drift = 0
+			motions[mt].drift = 0.0
 		motions[mt].update(delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=2]
@@ -10,6 +10,13 @@
 [ext_resource path="res://scenes/CanvasLayer.gd" type="Script" id=8]
 [ext_resource path="res://scenes/rooms/Room_cyber_4way_empty.tscn" type="PackedScene" id=9]
 [ext_resource path="res://sfx/Moonbound5.wav" type="AudioStream" id=10]
+[ext_resource path="res://font/Silver.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 19
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 11 )
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 7 )
@@ -29,6 +36,7 @@ position = Vector2( 240, 0 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 119.468, 82.7691 )
 camera_path = NodePath("Camera2D")
+gold_label_path = NodePath("../CanvasLayer/RootControl/GoldLabel")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -0.384846, 8.6845 )
@@ -48,8 +56,8 @@ script = ExtResource( 8 )
 
 [node name="RootControl" type="Control" parent="CanvasLayer"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 960.0
+margin_bottom = 640.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -78,5 +86,28 @@ margin_bottom = 208.0
 market_type = 2
 background_color = Color( 0.827451, 0, 1, 0.501961 )
 
+[node name="GoldLabel" type="Label" parent="CanvasLayer/RootControl"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -244.505
+margin_top = 2.0
+margin_right = -184.505
+margin_bottom = 16.0
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.894118, 1, 0, 1 )
+text = "$0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+
+[connection signal="buy" from="CanvasLayer/RootControl/Plots/StrengthPlot" to="Player" method="_on_StrengthPlot_buy"]
+[connection signal="sell" from="CanvasLayer/RootControl/Plots/StrengthPlot" to="Player" method="_on_StrengthPlot_sell"]
+[connection signal="buy" from="CanvasLayer/RootControl/Plots/SpeedPlot" to="Player" method="_on_SpeedPlot_buy"]
+[connection signal="sell" from="CanvasLayer/RootControl/Plots/SpeedPlot" to="Player" method="_on_SpeedPlot_sell"]
+[connection signal="buy" from="CanvasLayer/RootControl/Plots/HealthPlot" to="Player" method="_on_HealthPlot_buy"]
+[connection signal="sell" from="CanvasLayer/RootControl/Plots/HealthPlot" to="Player" method="_on_HealthPlot_sell"]

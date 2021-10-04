@@ -48,6 +48,10 @@ func _process_alive(delta):
 	current_attack_speed = base_attack_speed * atkspeed_market
 	current_move_speed = base_move_speed * speed_market
 	
+	$DebugLabels/Attack.text = str(int(current_attack_power))
+	$DebugLabels/AttackSpeed.text = str(int(current_attack_speed))
+	$DebugLabels/MoveSpeed.text = str(int(current_move_speed))
+	
 	var dir = Vector2(0, 0)
 	var vec = player.position - global_position
 	_process_anim(vec, dir)
