@@ -14,13 +14,17 @@ func _ready():
 	for mtn in MarketType.Types:
 		var mt = MarketType.Types[mtn]
 		motions[mt] = GeomBrownMotion.new(
-			1000,
+			100,
 			initial_drift,
 			initial_volatility,
 			delta_t)
-	motions[MarketType.Types.SPEED].volatility = 0.9
-	motions[MarketType.Types.HEALTH].drift = 5
 
 func _process(delta):
 	for mt in motions:
+		if motions[mt].current > 190:
+			motions[mt].drift = -0.5
+		elif motions[mt].current < 10:
+			motions[mt].drift = 0.5
+		else:
+			motions[mt].drift = 0
 		motions[mt].update(delta)

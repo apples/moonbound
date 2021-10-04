@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var plot_minimized = $CanvasLayer/PlotMinimized
-onready var plots = $CanvasLayer/Plots
+onready var plot_minimized = $CanvasLayer/RootControl/PlotMinimized
+onready var plots = $CanvasLayer/RootControl/Plots
 
 func _ready():
 	plots.hide()
